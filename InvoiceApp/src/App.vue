@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="invoicesLoaded || $store.state.user">
     <div class="app flex flex-colum">
       <Sidebar />
     <div class="app-content flex flex-column">
@@ -13,15 +13,18 @@
 <script setup>
 
 import Sidebar from './components/Sidebar.vue';
+import { onBeforeMount } from 'vue'
 import { useStore } from 'vuex';
-import { computed } from '@vue/runtime-core';
+import { computed } from 'vue';
 
 const store = useStore();
 
-const invoicesLoaded = computed(() => store.store.invoicesLoaded);
+const invoicesLoaded = computed(() => store.state.invoicesLoaded);
 store.dispatch('GET_INVOICES')
 
-
+onBeforeMount(() => {
+  store.dispatch('RegisterStaff/fetchUser')
+})
 
 
 </script>

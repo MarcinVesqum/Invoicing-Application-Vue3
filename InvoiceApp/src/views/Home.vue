@@ -23,7 +23,7 @@
             </div>
         </div>
         <!-- Invoices -->
-    <div v-if="invoiceData.length > 0">
+    <div class="invoice" v-if="invoiceData.length > 0">
       <Invoice v-for="(invoice, index) in filterData" :invoice="invoice" :key="index" />
     </div>
     <div v-else class="empty flex flex-column">
@@ -94,6 +94,13 @@ defineExpose({ filter })
         .right {
             flex: 1;
         }
+        .left {
+            margin-left: 3rem;
+            @media (min-width: 900px) {
+                
+            }
+        }
+
         .right {
             justify-content: flex-end;
             align-items: center;
@@ -127,7 +134,7 @@ defineExpose({ filter })
                     position: absolute;
                     top: 25px;
                     list-style: none;
-                    background-color: #1e2139;
+                    background-color: #30483f;
                     box-shadow: 0 4px 6px -1px rgba(0,0,0, 0.1), 0 2px 4px -1px rgba(0,0,0, 0.06);
 
                     li {
@@ -135,7 +142,7 @@ defineExpose({ filter })
                         font-size: 15px;
                         padding: 10px 20px;
                         &:hover {
-                            color: #1e2139;
+                            color: #30483f;
                             background-color: #fff;
                         }
                     }
@@ -144,7 +151,7 @@ defineExpose({ filter })
             }
             .button {
                 padding: 8px 10px;
-                background-color: #7c5dfa;
+                background-color: #81CACF;
                 border-radius: 40px;
 
                 
@@ -169,6 +176,9 @@ defineExpose({ filter })
             }
         }
         
+    }
+    .invoice {
+        margin-left: 1.4rem;
     }
     .empty {
         margin-top: 140px;

@@ -31,13 +31,18 @@
         </div>
 
         <div class="menu">
-            <router-link  class="button-sidebar" :to="{ name: 'Login'}">
+            <router-link  v-if="!staff" class="button-sidebar" :to="{ name: 'Login'}">
                 <span class="material-icons">
-                    settings
+                    login
                 </span>
                 <span class="text">Logowanie</span>
             </router-link>
-            <li  class="logout" @click="logout">Wyloguj</li>
+            <li @click="logout" v-if="staff"  class="button-sidebar">
+                <span class="material-icons">
+                    logout
+                </span>
+                <span class="text">Wyloguj</span>
+            </li>
         </div>
 
     </aside>
@@ -47,19 +52,25 @@
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
+import { auth } from '../firebase/init.js'
 
 const store = useStore();
 const router = useRouter();
 const activeMenu = ref(localStorage.getItem('activeMenu') === 'true')
 
 
-// const user = computed(() => store.state.users.user)
+
+const staff = ref(store.state.RegisterStaff.staff)
+console.log(staff)
 
 const toggleIcon = () => {
     activeMenu.value = !activeMenu.value
     localStorage.setItem('activeMenu', activeMenu.value)
 }
 
+const logout = () => {
+    store.dispatch('RegisterStaff/logout')
+}
 
 </script>
 

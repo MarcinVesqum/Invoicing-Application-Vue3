@@ -1,15 +1,19 @@
-import { createStore } from 'vuex';
+import { createStore, createLogger } from 'vuex';
 import {
 	doc,
 	collection,
 	getDocs,
 	deleteDoc,
 	updateDoc,
-	query
 } from 'firebase/firestore';
-import db from '../firebase/init.js';
+import {db} from '../firebase/init.js';
+import RegisterStaff from './modules/staff/index.js';
 
 const store = createStore({
+	modules: {
+		RegisterStaff
+	},
+	plugins: [createLogger()],
 	state: {
 			editInvoice: null,
 			invoiceData: [],
@@ -120,7 +124,7 @@ const store = createStore({
 			});
 			commit('UPDATE_STATUS_TO_PENDING', docId);
 		},
-	},
+	}
 });
 
 export default store;

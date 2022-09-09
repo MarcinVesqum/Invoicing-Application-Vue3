@@ -129,7 +129,7 @@ import { computed, ref, reactive, watch } from "vue";
 import { useStore } from "vuex";
 import {  useRouter } from "vue-router";
 import { uid } from 'uid';
-import db from '../firebase/init.js';
+import {db} from '../firebase/init.js';
 import { addDoc, collection } from 'firebase/firestore';
 
 const store = useStore();
